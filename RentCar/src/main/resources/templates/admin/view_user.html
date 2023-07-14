@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header :: header"></div>
+<body>
+<div th:replace="admin/header :: navbar"></div>
+<h1><strong>Email:</strong> <span th:text="${user.email}"></span></h1>
+<div>
+    <h2>User Details</h2>
+    <p><strong>Name:</strong> <span th:text="${user.name}"></span></p>
+    <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p><strong>Pesel:</strong> <span th:text="${user.pesel}"></span></p>
+    <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+    <div th:if="${user == null}">
+        <p>This user does not exist.</p>
+    </div>
+</div>
+</body>
+</html>

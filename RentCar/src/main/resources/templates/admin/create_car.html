@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<div th:replace="admin/header:: header"></div>
+
+<body>
+<div th:replace="admin/header:: navbar"></div>
+<br/><br/>
+<div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <h2 class="text-center">Add New Car</h2>
+        </div>
+        <div class="card-body">
+            <form role="form" method="post" th:action="@{/admin/cars}" th:object="${car}">
+                <div class="mb-13">
+                    <label class="form-label">Car Mark</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="mark"
+                            placeholder="Enter car Mark"
+                            name="mark"
+                            th:field="*{mark}"
+                    >
+                    <p th:if="${#fields.hasErrors('mark')}" class="text-danger"
+                       th:errors="*{mark}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Car Model</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="model"
+                            placeholder="Enter car Model"
+                            name="mark"
+                            th:field="*{model}"
+                    >
+                    <p th:if="${#fields.hasErrors('model')}" class="text-danger"
+                       th:errors="*{model}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">aily car rental price</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="price"
+                            placeholder="Enter daily car rental price "
+                            name="price"
+                            th:field="*{price}"
+                    >
+                    <p th:if="${#fields.hasErrors('price')}" class="text-danger"
+                       th:errors="*{price}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Horsepower</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="horsepower"
+                            placeholder="Enter horsepower"
+                            name="horsepower"
+                            th:field="*{horsepower}"
+                    >
+                    <p th:if="${#fields.hasErrors('horsepower')}" class="text-danger"
+                       th:errors="*{horsepower}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Description</label>
+                    <textarea
+                            class="form-control"
+                            id="description"
+                            placeholder="Enter car description"
+                            name="description"
+                            th:field="*{description}"
+                    ></textarea>
+                    <p th:if="${#fields.hasErrors('description')}" class="text-danger"
+                       th:errors="*{description}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Fuel</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="fuel"
+                            placeholder="Enter fuel type"
+                            name="fuel"
+                            th:field="*{fuel}"
+                    >
+                    <p th:if="${#fields.hasErrors('fuel')}" class="text-danger"
+                       th:errors="*{fuel}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Location</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="location"
+                            placeholder="Enter car location"
+                            name="location"
+                            th:field="*{location}"
+                    >
+                    <p th:if="${#fields.hasErrors('location')}" class="text-danger"
+                       th:errors="*{location}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Body Type</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="bodyType"
+                            placeholder="Enter body type"
+                            name="bodyType"
+                            th:field="*{bodyType}"
+                    >
+                    <p th:if="${#fields.hasErrors('bodyType')}" class="text-danger"
+                       th:errors="*{bodyType}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Fuel Type</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="fuelType"
+                            placeholder="Enter fuel type"
+                            name="fuelType"
+                            th:field="*{fuelType}"
+                    >
+                    <p th:if="${#fields.hasErrors('fuelType')}" class="text-danger"
+                       th:errors="*{fuelType}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Number of Doors</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="doorsNumber"
+                            placeholder="Enter number of doors"
+                            name="doorsNumber"
+                            th:field="*{doorsNumber}"
+                    >
+                    <p th:if="${#fields.hasErrors('doorsNumber')}" class="text-danger"
+                       th:errors="*{doorsNumber}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Number of Seats</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="seatsNumber"
+                            placeholder="Enter number of seats"
+                            name="seatsNumber"
+                            th:field="*{seatsNumber}"
+                    >
+                    <p th:if="${#fields.hasErrors('seatsNumber')}" class="text-danger"
+                       th:errors="*{seatsNumber}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Color</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="color"
+                            placeholder="Enter car color"
+                            name="color"
+                            th:field="*{color}"
+                    >
+                    <p th:if="${#fields.hasErrors('color')}" class="text-danger"
+                       th:errors="*{color}"></p>
+                </div>
+                <div class="mb-13">
+                    <label class="form-label">Production Year</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="productionYear"
+                            placeholder="Enter production year"
+                            name="productionYear"
+                            th:field="*{productionYear}"
+                    >
+                    <p th:if="${#fields.hasErrors('productionYear')}" class="text-danger"
+                       th:errors="*{productionYear}"></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>
+
+</body>
+</html>

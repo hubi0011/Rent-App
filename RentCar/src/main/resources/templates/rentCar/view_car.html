@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div th:replace="rentCar/header :: header"></div>
+
+<div th:replace="rentCar/header :: navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 th:text="${car.mark + ' ' + car.model}"></h2>
+            <hr/>
+            <p>Rental Cost per Day: <span th:text="${car.price}"></span></p>
+            <hr/>
+            <p>Horsepower: <span th:text="${car.horsepower}"></span></p>
+            <p>Description: <span th:text="${car.description}"></span></p>
+            <p>Fuel: <span th:text="${car.fuel}"></span></p>
+            <p>Location: <span th:text="${car.location}"></span></p>
+            <p>Body Type: <span th:text="${car.bodyType}"></span></p>
+            <p>Fuel Type: <span th:text="${car.fuelType}"></span></p>
+            <p>Doors Number: <span th:text="${car.doorsNumber}"></span></p>
+            <p>Seats Number: <span th:text="${car.seatsNumber}"></span></p>
+            <p>Color: <span th:text="${car.color}"></span></p>
+            <p>Production Year: <span th:text="${car.productionYear}"></span></p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>Reservation</h3>
+            </div>
+            <div th:if="${param.success}">
+                <div class="alert alert-info">
+                    You have successfully booked a car.
+                </div>
+            </div>
+
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Car is not available for the selected dates.
+                </div>
+            </div>
+            <div class="card-body">
+                <form role="form" method="post"
+                      th:action="@{/car/{carUrl}/reservation/makereservation(carUrl=${car.url})}"
+                      th:object="${reservation}">
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <input type="date" name="startDate" id="startDate" th:field="*{startDate}"
+                                   onchange="calculateTotalPrice()" min="" required>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <input type="date" id="endDate" th:field="*{endDate}" onchange="calculateTotalPrice()"
+                                   min="" required>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <strong>TOTAL COST:</strong>
+                            <input type="input" name="totalCost" id="totalCost" th:field="*{totalCost}" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary">Book Now</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="rentCar/footer:: footer"></div>
+<script>
+    function calculateTotalPrice() {
+        var startDate = new Date(document.getElementById('startDate').value);
+        var endDate = new Date(document.getElementById('endDate').value);
+        var pricePerDay = parseInt([[${car.price}]]);
+
+        if (!isNaN(startDate) && !isNaN(endDate) && startDate <= endDate) {
+            var daysDiff = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24));
+            var totalCost = daysDiff * pricePerDay;
+
+            document.getElementById('totalCost').value = totalCost;
+        }
+    }
+
+    function setMinimumDate() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; // Styczeń to miesiąc 0
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        var minDate = yyyy + '-' + mm + '-' + dd;
+        document.getElementById('startDate').setAttribute('min', minDate);
+        document.getElementById('endDate').setAttribute('min', minDate);
+    }
+
+    function setEndDateMin() {
+        var startDateValue = document.getElementById('startDate').value;
+        document.getElementById('endDate').setAttribute('min', startDateValue);
+        calculateTotalPrice(); // Dodano obliczanie ceny po zmianie daty końcowej
+    }
+
+    // Wywołaj funkcję przy załadowaniu strony
+    window.onload = function () {
+        setMinimumDate();
+        document.getElementById('startDate').addEventListener('change', setEndDateMin);
+    };
+</script>
+</body>
+</html>

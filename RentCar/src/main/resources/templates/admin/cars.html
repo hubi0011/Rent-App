@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header :: header">
+
+</div>
+<body>
+
+<div th:replace="admin/header :: navbar"></div>
+<div class="container">
+    <div class="row">
+        <h1>Car list</h1>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <form class="form-inline" th:action="@{/admin/cars/search}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query"/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+        <th>#</th>
+        <th style="width: 30%">Car Mark and Model</th>
+        <th style="width: 45% ">short description</th>
+        <th style="width: 10% ">type</th>
+        <th style="width: 5% ">production year</th>
+        <th style="width: 10% ">Actions Admin</th>
+        </thead>
+        <tbody>
+        <tr th:each="car, carStat:${cars}">
+            <td th:text="${carStat.count}"></td>
+            <td th:text="${car.mark+ ' '+ car.model}"></td>
+            <td th:text="${car.horsepower+'km'+'  '+car.fuelType+'  ' + car.seatsNumber+'seats'} "></td>
+            <td th:text="${car.bodyType}">Sedan</td>
+            <td th:text="${car.productionYear}">Year</td>
+
+            <td>
+                <a th:href="@{/admin/cars/{carID}/edit(carID=${car.ID})}" class="btn btn-primary"> Edit</a>
+                <a th:href="@{/admin/cars/{carID}/delete(carID=${car.ID})}" class="btn btn-danger"> Delete</a>
+                <a th:href="@{/admin/cars/{carUrl}/view(carUrl=${car.url})}" class="btn btn-info">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

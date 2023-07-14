@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header :: header"></div>
+<body>
+<div th:replace="admin/header :: navbar"></div>
+<div class="container">
+    <div class="row">
+        <h1>User List</h1>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <form class="form-inline" th:action="@{/admin/administration_users}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query"/>
+                        <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Pesel Number</th>
+            <th>Actions Admin</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, userStat:${users}">
+            <td th:text="${userStat.count}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phoneNumber}"></td>
+            <td th:text="${user.pesel}"></td>
+            <td>
+                <!--                <a th:href="@{/admin/administration_users/{userID}/edit(userID=${user.ID})}" class="btn btn-primary">Edit</a>-->
+                <a th:href="@{/admin/administration_users/{userID}/delete(userID=${user.id})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/admin/administration_users/{userID}/view(userID=${user.id})}"
+                   class="btn btn-info">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>
+

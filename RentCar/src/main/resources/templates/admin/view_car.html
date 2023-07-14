@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header :: header">
+
+</div>
+<body>
+
+<div th:replace="admin/header :: navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 th:text="${cars.mark + ' ' + cars.model}"></h2>
+            <hr/>
+            <p>Rental Cost per Day: <span th:text="${cars.price}"></span></p>
+            <hr/>
+            <p>Horsepower: <span th:text="${cars.horsepower}"></span></p>
+            <p>Description: <span th:text="${cars.description}"></span></p>
+            <p>Fuel: <span th:text="${cars.fuel}"></span></p>
+            <p>Location: <span th:text="${cars.location}"></span></p>
+            <p>Body Type: <span th:text="${cars.bodyType}"></span></p>
+            <p>Fuel Type: <span th:text="${cars.fuelType}"></span></p>
+            <p>Doors Number: <span th:text="${cars.doorsNumber}"></span></p>
+            <p>Seats Number: <span th:text="${cars.seatsNumber}"></span></p>
+            <p>Color: <span th:text="${cars.color}"></span></p>
+            <p>Production Year: <span th:text="${cars.productionYear}"></span></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

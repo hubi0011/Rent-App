@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<div th:replace="rentCar/header::header"></div>
+<body>
+<div th:replace="rentCar/header::navbar"></div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <form class="form-inline" th:action="@{/cars/search}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="Enter car Brand or Model "/>
+                        <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div th:each="car: ${carResponse}">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+                            <a th:href="@{/car/{carUrl}(carUrl=${car.url})}"
+                               th:text="${car.mark+' ' + car.model}"
+                            ></a>
+                            <br>
+                            <div>
+                                <strong th:text="${car.price}+' PLN'+' Per day'">
+                                </strong>
+
+                            </div>
+
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <span th:utext="${car.description}"></span>
+                        <a th:href="@{/car/{carUrl}(carUrl=${car.url})}"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
