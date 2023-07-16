@@ -45,13 +45,21 @@ User Account Management:
 
 /admin/administration_users/{userId}/view (GET): Displays detailed information about a specific guest user in the admin view user page.
 
+
 Tech Stack:
 
 Java 17 - Programming language for implementing the application.
+
 Spring Boot - Framework for building web applications.
+
 Thymeleaf - HTML template engine for rendering views.
+
 Hibernate - Object-Relational Mapping (ORM) tool for database interaction.
+
 MySQL - Database for storing car and user information.
+
 Lombok - Library for reducing boilerplate code.
+
 H2 DB - In-memory database for testing purposes.
+
 Open API - Specification for documenting the API endpoints.
