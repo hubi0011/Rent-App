@@ -54,4 +54,4 @@ Hibernate - Object-Relational Mapping (ORM) tool for database interaction.
 MySQL - Database for storing car and user information.
 Lombok - Library for reducing boilerplate code.
 H2 DB - In-memory database for testing purposes.
-Open API - Specification for documenting and testing the API endpoints.
+Open API - Specification for documenting the API endpoints.
